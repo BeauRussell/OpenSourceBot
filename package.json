@@ -1,0 +1,21 @@
+{
+  "name": "command-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "happiness"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab-internal.stream.me/streamme/command-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "happiness": "^10.0.2",
+    "npm": "^5.8.0",
+    "request": "^2.85.0",
+    "ws": "^5.1.1"
+  }
+}
