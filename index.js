@@ -1,6 +1,6 @@
 const WebSocket = require('ws');
 const request = require('request');
-const getParser = require('./parse-message');
+const getParser = require('@streammedev/parse-message');
 
 const botKey = 'ADD THE BOT KEY';
 const botSecret = 'ADD THE BOT SECRET';

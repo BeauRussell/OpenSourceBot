@@ -74,8 +74,9 @@ in your commands:
 ## Send a Message as a bot
 
 You can send a message as a user using the following request:
+
 ```
-POST /api-commands/v1/room/{roomPublicID}/command/say
+POST https://www.stream.me/api-commands/v1/room/{roomPublicID}/command/say
 -d '{"message":"test message"}'
 
 RESPONSE
@@ -95,6 +96,7 @@ if message sent is a chat action that requires data sent back:
 ```
 
 However, this request needs an authorization header, like:
+
 ```
 headers: {
 	Authorization: `Bearer ${token}`
@@ -104,8 +106,20 @@ headers: {
 The token for the bot can be retrieved through the following request:
 
 ```
+	POST https://www.stream.me/api-auth/v1/login-bot
+	-d {key: botKey, secret: botSecret}
 
+	RESPONSE
+	200
+	{ 
+		token_type: 'bearer',
+  	access_token: 'ACCESS TOKEN',
+  	expires_in: 129600
+  }
 ```
+
+Once the access token is saved, it can be used with the `say` endpoint from API commands as 
+stated earlier.
 
 ## Other StreamMe APIs Used In Commands
 
