@@ -9,11 +9,11 @@ const publicId = 'ADD THE PUBLIC ID OF THE CHANNEL';
 var roomId = `user:${publicId}:web`;
 
 const secondsInMS = 1000;
-const minutesInMS = seconds * 60;
-const hoursInMS = minutes * 60;
-const daysInMS = hours * 24;
-const monthsInMS = days * 30;
-const yearsInMS = days * 365;
+const minutesInMS = secondsInMS * 60;
+const hoursInMS = minutesInMS * 60;
+const daysInMS = hoursInMS * 24;
+const monthsInMS = daysInMS * 30;
+const yearsInMS = daysInMS * 365;
 
 function botAuth (cb) {
 	request({
@@ -68,8 +68,7 @@ getParser(roomId, function (err, parseMessage) {
 				'!contest': 'View my rank on the Top Streamer Leaderboard! https://www.stream.me/contest',
 				'!followage': followAge,
 				'!uptime': uptime,
-				'!coinflip': coinflip,
-				'!title': title
+				'!coinflip': coinflip
 			};
 
 			function parse (data) {
