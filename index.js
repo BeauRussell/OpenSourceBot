@@ -74,28 +74,21 @@ getParser(roomId, function (err, parseMessage) {
 			function parse (data) {
 				const message = parseMessage(data);
 				const role = message.actor.role;
-				let chat = message.message;
-				const spaceIndex = chat.indexOf(' ');
-				let changes;
-				if (spaceIndex !== -1) {
-					chat = chat.slice(0, spaceIndex);
-					changes = message.message.slice(spaceIndex + 1);
-				}
-				console.log(message);
+				const chat = message.message;
 				if (chat in commands) {
-					responds(chat, message.actor.slug, changes, role);
+					responds(chat, message.actor.slug);
 				}
 			}
 
-			function responds (key, userSlug, changes, role) {
+			function responds (key, userSlug) {
 				if (typeof commands[key] === 'string') {
 					sendMessage(commands[key]);
 				} else {
-					commands[key](userSlug, changes, role);
+					commands[key](userSlug);
 				}
 			}
 
-			function followAge (userSlug, changes, role) {
+			function followAge (userSlug) {
 				request({
 					url: `https://www.stream.me/api-user/v2/${userSlug}/follow/${channelSlug}`,
 					json: true
@@ -116,7 +109,7 @@ getParser(roomId, function (err, parseMessage) {
 				});
 			}
 
-			function uptime (userSlug, changes, role) {
+			function uptime (userSlug) {
 				request({
 					url: `https://www.stream.me/api-channel/v1/channels?publicIds=${publicId}`,
 					json: true
@@ -136,7 +129,7 @@ getParser(roomId, function (err, parseMessage) {
 				});
 			}
 
-			function coinflip (userSlug, changes, role) {
+			function coinflip (userSlug) {
 				if (Math.random() > 0.5) {
 					sendMessage('Heads!');
 				} else {
