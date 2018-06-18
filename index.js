@@ -18,7 +18,7 @@ const yearsInMS = daysInMS * 365;
 function botAuth (cb) {
 	request({
 		method: 'POST',
-		url: 'https://stream.me/api-auth/v1/login-bot',
+		url: 'https://www.stream.me/api-auth/v1/login-bot',
 		body: {
 			key: botKey,
 			secret: botSecret
@@ -97,7 +97,7 @@ getParser(roomId, function (err, parseMessage) {
 
 			function followAge (userSlug, changes, role) {
 				request({
-					url: `https://stream.me/api-user/v2/${userSlug}/follow/${channelSlug}`,
+					url: `https://www.stream.me/api-user/v2/${userSlug}/follow/${channelSlug}`,
 					json: true
 				}, function (err, res, body) {
 					if (err) {
@@ -118,7 +118,7 @@ getParser(roomId, function (err, parseMessage) {
 
 			function uptime (userSlug, changes, role) {
 				request({
-					url: `https://stream.me/api-channel/v1/channels?publicIds=${publicId}`,
+					url: `https://www.stream.me/api-channel/v1/channels?publicIds=${publicId}`,
 					json: true
 				}, function (err, res, body) {
 					if (err) {
@@ -205,7 +205,7 @@ getParser(roomId, function (err, parseMessage) {
 			function sendMessage (sendMessage) {
 				request({
 					method: 'POST',
-					url: `https://stream.me/api-commands/v1/room/${roomId}/command/say`,
+					url: `https://www.stream.me/api-commands/v1/room/${roomId}/command/say`,
 					json: true,
 					headers: {
 						Authorization: `Bearer ${token}`
@@ -225,7 +225,7 @@ getParser(roomId, function (err, parseMessage) {
 			}
 
 			function openWS () {
-				var ws = new WebSocket('wss://stream.me/api-rooms/v3/ws');
+				var ws = new WebSocket('wss://www.stream.me/api-rooms/v3/ws');
 				ws.on('open', function open () {
 					// TODO: template roomId
 					ws.send(`chat {"action":"join","room":"${roomId}"}`);
