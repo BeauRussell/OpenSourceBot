@@ -6,7 +6,7 @@ const botKey = 'ADD THE BOT KEY';
 const botSecret = 'ADD THE BOT SECRET';
 
 const publicId = 'ADD THE PUBLIC ID OF THE CHANNEL';
-var roomId = `user:${publicId}:web`;
+const roomId = `user:${publicId}:web`;
 
 const secondsInMS = 1000;
 const minutesInMS = secondsInMS * 60;
