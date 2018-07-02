@@ -12,6 +12,15 @@ support@stream.me.
 	* [Install Bot](#install-bot-and-packages)
 - [Setup Your bot](#setting-up-your-bot)
 	* [Registration](#register-your-bot)
+	* [Authorize Someone Else's Bot](#authorize-a-bot)
+	* [Running This Bot](#running-this-bot)
+- [Writing Your Own Bot](#creating-your-own-bot)
+	* [Receiving Messages](#receving-messages)
+	* [Sending a Message](#send-a-message-as-a-bot)
+	* [Other StreamMe APIs Used](#other-streamme-apis-used-in-commands)
+	* [Third-Party APIs and Objects](#documentation-for-other-apis-and-objects-used)
+
+
 
 ## Installation
 
