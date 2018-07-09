@@ -20,15 +20,13 @@ support@stream.me.
 	* [Other StreamMe APIs Used](#other-streamme-apis-used-in-commands)
 	* [Third-Party APIs and Objects](#documentation-for-other-apis-and-objects-used)
 
-
-
 ## Installation
 
 ### Install required Software
 
-If you have not worked with JavaScript before, you will need to start by installing [node][6]. 
-The LTS version is recommended for most users, only download the current version if you know what 
-you're doing.
+If you have not worked with JavaScript before, you will need to start by installing node by 
+visiting [https://nodejs.org/][6]. The LTS version is recommended for most users, only 
+download the current version if you know what you're doing.
 
 Once you have installed node, make sure it is globally installed by opening your command prompt 
 and typing the command `node -v`, then `npm -v`. You should see output similar to below:
@@ -40,7 +38,7 @@ $ npm -v
 6.1.0
 ```
 
-If you get a reasonable version number for both of those commands, install [git][7].
+If you get a reasonable version number for both of those commands, install git by visiting [https://gitforwindows.org/][7].
 
 To make sure git is properly installed, go back to your command prompt and run `git --verison`. 
 This should give you output similar to below: 

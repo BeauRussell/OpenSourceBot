@@ -29,6 +29,10 @@ function botAuth (cb) {
 			console.log(err);
 			return;
 		}
+		if (res.statusCode !== 200) {
+			console.log('Could not authenticate bot: Did not receive 200 http status, instead was: ', resp.statusCode, ' body: ', body);
+			return cb(new Error('Could not authenticate: non 200 response'));
+		}
 		const botToken = body.access_token;
 		cb(err, botToken);
 	});
@@ -212,7 +216,7 @@ getParser(roomId, function (err, parseMessage) {
 						return;
 					}
 					if (res.statusCode !== 200) {
-						console.log(body);
+						console.log('Could not post message to api-commands: ', body);
 					}
 				});
 			}
@@ -220,7 +224,7 @@ getParser(roomId, function (err, parseMessage) {
 			function openWS () {
 				var ws = new WebSocket('wss://www.stream.me/api-rooms/v3/ws');
 				ws.on('open', function open () {
-					// TODO: template roomId
+					console.log('Connected and Listening for new messages');
 					ws.send(`chat {"action":"join","room":"${roomId}"}`);
 				});
 
