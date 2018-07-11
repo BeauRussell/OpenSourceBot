@@ -38,33 +38,17 @@ $ npm -v
 6.1.0
 ```
 
-If you get a reasonable version number for both of those commands, install git by visiting [https://gitforwindows.org/][7].
-
-To make sure git is properly installed, go back to your command prompt and run `git --verison`. 
-This should give you output similar to below: 
-
-```
-$ git --version
-git version 2.18.0
-```
-
 ### Install Bot and Packages
 
-Now that you have installed all the necessary software to install and run the bot, you can 
-proceed in your command prompt. Once you have opened it, you will be in your home directory. 
-Decide where you would like to save the bot and navigate there with the `cd` command. If you
-do not know the command line, I suggest you install the bot on either your desktop or in your
-documents folder by running either `cd desktop` or `cd documents`. Once you have navigated to 
-where you want to install the bot, you need to clone the code with the command below:
+Now that you have installed all the necessary software to download and run the bot, visit the 
+[Bot Page][7]. On the right side of the task bar located above the file listing, there is a green 
+button labeled "Clone or download". Clicking that will open a dropdown with `Download ZIP` on the 
+bottom. This will download a zip file containing the bot.
 
-```
-git clone https://github.com/BeauRussell/OpenSourceBot.git
-```
-
-After that command runs, it should create a directory named "OpenSourceBot" with several files 
-in it, you can change the name of the directory if you prefer. Continue by running the `cd` command
-again in your terminal to change directories into the newly installed directory. If you do not 
-change the name of the directory, this can be done by simply running `cd OpenSourceBot`.
+Head over to where the file downloaded, right click on it and extract it to your desktop. Once 
+that is completed, open your computer's command prompt. From here type 
+`cd desktop/OpenSourceBot-master`. This will change the window to point into the directory the 
+bot is residing in.
 
 Once you are inside the directory, just run `npm i`. This will install all the packages required 
 to run the bot, and is the last step in the installation.
@@ -292,4 +276,4 @@ GET https://www.stream.me/api-channel/v1/channels?usernames=${userSlug}
 [4]: https://www.stream.me
 [5]: https://developers.stream.me/bots
 [6]: https://nodejs.org/
-[7]: https://gitforwindows.org/
+[7]: https://github.com/BeauRussell/OpenSourceBot.git
