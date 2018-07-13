@@ -65,7 +65,6 @@ getParser(roomId, function (err, parseMessage) {
 			openWS();
 
 			const commands = {
-				'!bot': 'You can start to set up your own chat bot by visiting AWAITING URL',
 				'!emotes': 'Upload your own emotes! https://www.stream.me/settings/chat',
 				'!flip': '(╯°□°）╯︵ ┻━┻',
 				'!fix': '┬──┬ ノ( ゜-゜ノ)',
