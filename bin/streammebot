@@ -1,0 +1,45 @@
+#!/usr/bin/env node
+
+const program = require('commander');
+const bot = require('../src/index.js')
+
+program
+	.version('0.0.1')
+	.option('-k, --key <key>', 'Bot Key for authorization')
+	.option('-s, --secret <secret>', 'Bot Secret for authorization')
+	.option('-i, --id <id>', 'The publicId of the owner of the room the bot will listen to')
+	.parse(process.argv);
+	
+let botKey = program.key;
+let botSecret = program.secret;
+let publicId = program.id;
+
+// Used to check if id and bot key are valid
+const uuidRegEx = /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/;
+
+if (typeof botKey === 'undefined' || !uuidRegEx.test(botKey)) {
+	if (process.env.botKey) {
+		botKey = process.env.botKey;
+	} else {
+		console.error('Invalid key given, type "streammebot -h" for help');
+		process.exit(1);
+	}
+}
+if (typeof botSecret === 'undefined') {
+	if (process.env.botSecret) {
+		botSecret = process.env.botSecret;
+	} else {
+		console.error('no secret given, type "streammebot -h" for help');
+		process.exit(1);
+	}
+}
+if (typeof publicId === 'undefined' || !uuidRegEx.test(publicId)) {
+	if (process.env.publicId) {
+		publicId = process.env.publicId;
+	} else {
+		console.error('invalid id given, type "streammebot -h" for help');
+		process.exit(1);
+	}
+}
+
+bot(botKey, botSecret, publicId);

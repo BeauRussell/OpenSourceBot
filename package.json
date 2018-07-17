@@ -2,18 +2,22 @@
   "name": "command-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "test": "happiness"
   },
+  "bin": {
+    "streammebot": "./bin/streammebot"
+  },
   "repository": {
     "type": "git",
-    "url": "https://gitlab-internal.stream.me/streamme/command-bot.git"
+    "url": "https://github.com/BeauRussell/OpenSourceBot.git"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@streammedev/parse-message": "^1.0.1",
+    "commander": "^2.16.0",
     "happiness": "^10.0.2",
     "npm": "^5.8.0",
     "request": "^2.85.0",
