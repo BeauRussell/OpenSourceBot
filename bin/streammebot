@@ -18,24 +18,24 @@ let publicId = program.id;
 const uuidRegEx = /^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$/;
 
 if (typeof botKey === 'undefined' || !uuidRegEx.test(botKey)) {
-	if (process.env.botKey) {
-		botKey = process.env.botKey;
+	if (process.env.BOT_KEY) {
+		botKey = process.env.BOT_KEY;
 	} else {
 		console.error('Invalid key given, type "streammebot -h" for help');
 		process.exit(1);
 	}
 }
 if (typeof botSecret === 'undefined') {
-	if (process.env.botSecret) {
-		botSecret = process.env.botSecret;
+	if (process.env.BOT_SECRET) {
+		botSecret = process.env.BOT_SECRET;
 	} else {
 		console.error('no secret given, type "streammebot -h" for help');
 		process.exit(1);
 	}
 }
 if (typeof publicId === 'undefined' || !uuidRegEx.test(publicId)) {
-	if (process.env.publicId) {
-		publicId = process.env.publicId;
+	if (process.env.PUBLIC_ID) {
+		publicId = process.env.PUBLIC_ID;
 	} else {
 		console.error('invalid id given, type "streammebot -h" for help');
 		process.exit(1);
