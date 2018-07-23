@@ -18,7 +18,7 @@ support@stream.me.
 	* [Receiving Messages](#receving-messages)
 	* [Sending a Message](#send-a-message-as-a-bot)
 	* [Other StreamMe APIs Used](#other-streamme-apis-used-in-commands)
-	* [Third-Party APIs and Objects](#documentation-for-other-apis-and-objects-used)
+	* [Third-Party Packages and Objects](#documentation-for-packages-and-objects-used)
 
 ## Installation
 
@@ -256,18 +256,21 @@ GET https://www.stream.me/api-channel/v1/channels?usernames=${userSlug}
 ```
 
 
-### Documentation for Other APIs and Objects used
+### Documentation for Packages and Objects Used
 
-[JavaScript Date Object][2]
+[Moment.js][2]
 
-[Pastebin Api][3]
+[pino][3]
+
+[commander][8]
 
 
 
 [1]: https://discord.gg/YchZTYY
-[2]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-[3]: https://pastebin.com/api
+[2]: http://momentjs.com/docs/
+[3]: https://www.npmjs.com/package/pino
 [4]: https://www.stream.me
 [5]: https://developers.stream.me/bots
 [6]: https://nodejs.org/
 [7]: https://github.com/BeauRussell/OpenSourceBot.git
+[8]: https://www.npmjs.com/package/commander
