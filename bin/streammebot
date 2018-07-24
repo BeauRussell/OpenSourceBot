@@ -42,4 +42,4 @@ if (typeof publicId === 'undefined' || !uuidRegEx.test(publicId)) {
 	}
 }
 
-bot(botKey, botSecret, publicId);
+bot.run(botKey, botSecret, publicId);

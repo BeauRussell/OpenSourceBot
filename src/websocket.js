@@ -4,7 +4,7 @@ const pino = require('pino')();
 let wsTimeout = 250;
 const wsTimeoutMultiplier = 2;
 
-module.exports = function openWS (roomId, parse) {
+module.exports = function openWS (roomId, parse, cb) {
 	const ws = new WebSocket('wss://www.stream.me/api-rooms/v3/ws');
 	let isAlive = false;
 	ws.on('open', function open () {
@@ -39,7 +39,7 @@ module.exports = function openWS (roomId, parse) {
 			pino.info('Unexpected message type: ' + rawMessage.type);
 			return;
 		}
-		parse(rawMessage.data);
+		cb(parse(rawMessage.data));
 	});
 
 	function noop () {}
