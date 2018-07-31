@@ -4,7 +4,7 @@
   "description": "",
   "main": "./src/index.js",
   "scripts": {
-    "test": "happiness"
+    "test": "happiness && mocha"
   },
   "bin": {
     "streammebot": "./bin/streammebot"
@@ -20,11 +20,13 @@
     "commander": "^2.16.0",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
+    "nock": "^9.4.3",
     "pino": "^4.17.3",
     "request": "^2.87.0",
     "ws": "^5.1.1"
   },
   "devDependencies": {
-    "happiness": "^10.0.2"
+    "happiness": "^10.0.2",
+    "mocha": "^5.2.0"
   }
 }

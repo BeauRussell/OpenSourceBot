@@ -17,9 +17,8 @@ index.followAge = function (userSlug, publicId, channelSlug, cb) {
 		if (!followStart) {
 			return cb(null, '@' + userSlug + ' is not following this channel.');
 		}
-		const msFollow = moment().utc().subtract(followStart);
-		const timingInMS = msFollow.valueOf();
-		const timing = moment.duration(timingInMS).format();
+		const msFollow = Date.now() - moment(followStart).valueOf();
+		const timing = moment.duration(msFollow).format();
 		cb(null, '@' + userSlug + ' has been following this channel for: ' + timing);
 	});
 };
@@ -33,7 +32,7 @@ index.uptime = function (userSlug, publicId, channelSlug, cb) {
 		if (!lastStarted) {
 			return cb(null, 'This channel is not currently live.');
 		}
-		const msLive = moment().utc.subtract(lastStarted, 'milliseconds');
+		const msLive = Date.now() - lastStarted;
 		const timing = moment.duration(msLive).format();
 		cb(null, 'This channel has been live for: ' + timing);
 	});
@@ -61,16 +60,19 @@ const commands = {
 
 index.responds = function (message, options) {
 	const chat = message.message;
-	if (typeof commands[chat] === 'string') {
-		streamme.sendMessage(commands[chat], options);
-	} else if (typeof commands[chat] === 'function') {
-		commands[chat](message.actor.slug, options.publicId, options.channelSlug, function (err, message) {
-			if (err) {
-				pino.error('Issue receiving messsage to send', {err: err});
-				return;
-			}
-			streamme.sendMessage(message, options);
-		});
+	// Bots come through the web socket without a slug, this checks that so bots don't respond to themselves without planning to
+	if (message.actor.slug) {
+		if (typeof commands[chat] === 'string') {
+			streamme.sendMessage(commands[chat], options);
+		} else if (typeof commands[chat] === 'function') {
+			commands[chat](message.actor.slug, options.publicId, options.channelSlug, function (err, message) {
+				if (err) {
+					pino.error('Issue receiving messsage to send', {err: err});
+					return;
+				}
+				streamme.sendMessage(message, options);
+			});
+		}
 	}
 };
 

@@ -89,8 +89,8 @@ the developers page, or in your [chat settings](https://www.stream.me/settings/c
 This is the easy part. Once you have followed all the steps above, make sure your command prompt 
 is pointed into the directory the bot is in, if you're not sure, you can close the command prompt, 
 reopen it, and type in the same `cd desktop/OpenSourceBot-master` command. From there write in the 
-following command (You can paste the values from the website by copying them, then middle clicking
-on the command prompt).
+following command (You can paste the values from the website by copying them, then using the 
+SHIFT + INS shortcut).
 
 ```
 streammebot -k <bot key> -s <bot secret> -i <your id>
