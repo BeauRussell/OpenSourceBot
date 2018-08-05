@@ -59,9 +59,10 @@ module.exports = function openWS (roomId, parse, cb) {
 	}, 15000);
 
 	ws.on('close', function (reasonCode, description) {
+		pino.info('Connection closed, attempting to reestablish');
 		// retry every 90-100% of the timeout to stagger retries to reduce load
 		setTimeout(function () {
-			openWS();
+			openWS(roomId, parse, cb);
 		}, Math.min(wsTimeout * (0.9 + Math.random() * 0.1), 30000));
 	});
 

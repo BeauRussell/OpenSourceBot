@@ -246,8 +246,8 @@ will give you an object, inside of which has another array labeled `.streams` th
 to access the first index of. Finally this will have 2 values that you need, `.active` and 
 `.lastStarted`. `.active` gives you a truthy value assigned to if the channel is actually online,
 allowing you to check that before doing any calculations. The `.lastStarted` value returns the 
-date in the format of milliseconds past 1 January 1970, which can easily be used with the JS 
-`Date` object.
+date in the format of milliseconds past 1 January 1970, which can easily be used with the `moment` 
+package, or the JS `Date` object.
 
 If you feel more comfortable using slugs, you can make the same request with a userSlug:
 
@@ -259,6 +259,8 @@ GET https://www.stream.me/api-channel/v1/channels?usernames=${userSlug}
 ### Documentation for Packages and Objects Used
 
 [Moment.js][2]
+
+[Moment Duration Format][9]
 
 [pino][3]
 
@@ -274,3 +276,4 @@ GET https://www.stream.me/api-channel/v1/channels?usernames=${userSlug}
 [6]: https://nodejs.org/
 [7]: https://github.com/BeauRussell/OpenSourceBot.git
 [8]: https://www.npmjs.com/package/commander
+[9]: https://github.com/jsmreese/moment-duration-format

@@ -16,7 +16,6 @@ describe('index.js', function () {
 			index.followAge(userSlug, channelId, channelSlug, function (err, message) {
 				assert(!err);
 				assert(typeof message === 'string');
-				assert(message === '@yourknightmares has been following this channel for: 1 year, 5 months, 26 days');
 				done();
 			});
 		});
@@ -39,6 +38,18 @@ describe('index.js', function () {
 				assert(!err);
 				assert(typeof message === 'string');
 				assert(message === 'Heads!' || message === 'Tails!');
+				done();
+			});
+		});
+	});
+
+	describe('uptime', function () {
+		it('successfully returns when a channel is not live', function (done) {
+			nockChannelsNotLive();
+			index.uptime(userSlug, channelId, channelSlug, function (err, message) {
+				assert(!err);
+				assert(typeof message === 'string');
+				assert(message === 'This channel is not currently live.');
 				done();
 			});
 		});
@@ -68,10 +79,6 @@ describe('streamme.js', function () {
 				done();
 			});
 		});
-	});
-
-	describe('sendMessage', function () {
-
 	});
 });
 
@@ -199,4 +206,40 @@ function nockUserSlugSuccess () {
 	'cloudflare',
 	'CF-RAY',
 	'443210362b5358c1-DFW' ]);
+}
+
+function nockChannelsNotLive () {
+	nock('https://www.stream.me:443', {'encodedQueryParams': true})
+  .get('/api-channel/v1/channels')
+  .query({'publicIds': '4882ff3e-47cd-48c9-8bb7-858eca571710'})
+  .reply(200, [{'_links': {'banner': {'href': 'https://user-image.creekcdn.com/mediasvc/v1/user/banner/v/1/res/1440x360/4882ff3e-47cd-48c9-8bb7-858eca571710.jpg', 'template': 'https://user-image.creekcdn.com/mediasvc/v1/user/banner/v/1/res/{width}x{height}/4882ff3e-47cd-48c9-8bb7-858eca571710.jpg'}, 'avatar': {'href': 'https://user-image.creekcdn.com/mediasvc/v1/user/avatar/v/1/res/256x256/4882ff3e-47cd-48c9-8bb7-858eca571710.jpg', 'template': 'https://user-image.creekcdn.com/mediasvc/v1/user/avatar/v/1/res/{width}x{height}/4882ff3e-47cd-48c9-8bb7-858eca571710.jpg'}}, 'username': 'yourknightmares', 'slug': 'yourknightmares', 'description': '', 'networks': [{'name': 'twitter', 'href': 'http://www.twitter.com/yourknightmares'}, {'name': 'youtube', 'href': 'http://youtube.com/yourknightmares'}], 'displayName': 'yourknightmares', 'location': 'San Antonio, Texas', 'userPublicId': '4882ff3e-47cd-48c9-8bb7-858eca571710', 'stats': {'human': {'totalViews': '3,600', 'followers': '94', 'following': '64', 'subscribers': '1', 'supporters': '0'}, 'raw': {'totalViews': 3600, 'followers': 94, 'following': 64, 'subscribers': 1, 'supporters': 0}}, 'interactions': {'following': false, 'affection': 0, 'subscribed': false}, 'chatroomId': 'multistream:V8nKAb3w', 'lastStarted': 1522527792000, 'streams': [{'_links': {'thumbnail': {'href': 'https://static1.creekcdn.com/frozen/images/streamme/streamme-fishee.jpg'}, 'thumbnailSquare': {'href': 'https://static1.creekcdn.com/frozen/images/streamme/streamme-fishee-sq.jpg'}, 'banner': {'href': 'https://user-image.creekcdn.com/mediasvc/v1/user/banner/v/1/res/1440x360/4882ff3e-47cd-48c9-8bb7-858eca571710.jpg', 'template': 'https://user-image.creekcdn.com/mediasvc/v1/user/banner/v/1/res/{width}x{height}/4882ff3e-47cd-48c9-8bb7-858eca571710.jpg'}, 'avatar': {'href': 'https://user-image.creekcdn.com/mediasvc/v1/user/avatar/v/1/res/256x256/4882ff3e-47cd-48c9-8bb7-858eca571710.jpg', 'template': 'https://user-image.creekcdn.com/mediasvc/v1/user/avatar/v/1/res/{width}x{height}/4882ff3e-47cd-48c9-8bb7-858eca571710.jpg'}}, 'manifest': 'https://edge.stream.me/live/b522e7c9-7e2a-4037-8db4-29f94cbb1c4c.json?overrideCdnDomain=sea1a-edge.stream.me', 'active': false, 'title': 'You can call me the mighty farmer', 'privateLocked': false, 'username': 'yourknightmares', 'userSlug': 'yourknightmares', 'displayName': 'yourknightmares', 'clientName': 'Web', 'clientSlug': 'web', 'ageRating': 13, 'lastStarted': 1522527792000, 'publicId': 'b522e7c9-7e2a-4037-8db4-29f94cbb1c4c', 'rebroadcast': false, 'promotedUntil': '2018-08-06 15:42:21', 'stats': {'human': {'likes': '0', 'dislikes': '0', 'followers': '94', 'following': '64', 'viewers': '0', 'totalViews': '3,600', 'subscribers': '1', 'supporters': '0'}, 'raw': {'likes': 0, 'dislikes': 0, 'followers': 94, 'following': 64, 'viewers': 0, 'totalViews': 3600, 'subscribers': 1, 'supporters': 0}}, 'userPublicId': '4882ff3e-47cd-48c9-8bb7-858eca571710', 'chatroomId': 'user:4882ff3e-47cd-48c9-8bb7-858eca571710:web', 'tags': [], 'topics': [{'id': '6d35a988-49e7-4dcd-86ab-0d19472ad53c', 'name': 'Stardew Valley', 'slug': 'stardew-valley', '_links': {'icon': {'href': 'https://static1.creekcdn.com/frozen/images/topics/icon/default.png'}, 'cover': {'href': 'https://static1.creekcdn.com/frozen/images/topics/cover/default.jpg'}, 'banner': {'href': 'https://static1.creekcdn.com/frozen/images/topics/banner/default.jpg'}, 'topicPage': {'href': 'https://www.stream.me/topics/stardew-valley'}}}], 'mentions': [], 'interactions': {'following': false, 'affection': 0, 'subscribed': false}, 'multistreams': [{'created': '2018-03-31T20:19:00.000Z', 'title': 'Rainbow Six Siege! Multi Party!', 'publicId': 'V8nKAb3w', 'slug': 'Rainbow-Six-Siege-Mu', 'chatroomId': 'multistream:V8nKAb3w'}, {'created': '2017-11-08T22:39:45.000Z', 'title': 'Fortnite on StreamMe! ', 'publicId': '9Zp7kqx6', 'slug': 'Fortnite-on-StreamMe', 'chatroomId': 'multistream:9Zp7kqx6'}]}]}], [ 'Date',
+	'Mon, 06 Aug 2018 15:42:21 GMT',
+	'Content-Type',
+	'application/json; charset=utf-8',
+	'Transfer-Encoding',
+	'chunked',
+	'Connection',
+	'close',
+	'Set-Cookie',
+	'__cfduid=d9c35a83d42af87409137b820bac7c4ab1533570141; expires=Tue, 06-Aug-19 15:42:21 GMT; path=/; domain=.stream.me; HttpOnly',
+	'Vary',
+	'Accept-Encoding',
+	'ETag',
+	'W/"sMSAwLQysoDIEzCVc+UN9A=="',
+	'X-Proxy-Read-Timeout',
+	'20s',
+	'X-Frame-Options',
+	'SAMEORIGIN',
+	'Strict-Transport-Security',
+	'max-age=15552000; includeSubDomains',
+	'X-Content-Type-Options',
+	'nosniff',
+	'X-XSS-Protection',
+	'1; mode=block',
+	'Expect-CT',
+	'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+	'Server',
+	'cloudflare',
+	'CF-RAY',
+	'44629ce54ca258c1-DFW' ]);
 }

@@ -18,7 +18,8 @@ index.followAge = function (userSlug, publicId, channelSlug, cb) {
 			return cb(null, '@' + userSlug + ' is not following this channel.');
 		}
 		const msFollow = Date.now() - moment(followStart).valueOf();
-		const timing = moment.duration(msFollow).format();
+		// .format will make sure it prints [year] year(s), [month] month(s), [day] day(s), trim of false makes sure days isn't cut off
+		const timing = moment.duration(msFollow).format({trim: false});
 		cb(null, '@' + userSlug + ' has been following this channel for: ' + timing);
 	});
 };
@@ -33,7 +34,8 @@ index.uptime = function (userSlug, publicId, channelSlug, cb) {
 			return cb(null, 'This channel is not currently live.');
 		}
 		const msLive = Date.now() - lastStarted;
-		const timing = moment.duration(msLive).format();
+		// .format will make sure it prints [hour] hours, [minute] minutes, [second] seconds, cutting off the first values if they are 0
+		const timing = moment.duration(msLive).format('h [hours], m [minutes], s [seconds],');
 		cb(null, 'This channel has been live for: ' + timing);
 	});
 };
