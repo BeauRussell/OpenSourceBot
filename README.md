@@ -18,7 +18,7 @@ support@stream.me.
 	* [Receiving Messages](#receving-messages)
 	* [Sending a Message](#send-a-message-as-a-bot)
 	* [Other StreamMe APIs Used](#other-streamme-apis-used-in-commands)
-	* [Third-Party APIs and Objects](#documentation-for-other-apis-and-objects-used)
+	* [Third-Party Packages and Objects](#documentation-for-packages-and-objects-used)
 
 ## Installation
 
@@ -50,8 +50,9 @@ that is completed, open your computer's command prompt. From here type
 `cd desktop/OpenSourceBot-master`. This will change the window to point into the directory the 
 bot is residing in.
 
-Once you are inside the directory, just run `npm i`. This will install all the packages required 
-to run the bot, and is the last step in the installation.
+Once you are inside the directory, run `npm i`. This will install all the packages required 
+to run the bot, and is the last step in the installation. Once that is finished, also run 
+`npm link` in the terminal, this will set up the command you enter to run the bot.
 
 ## Setting Up Your Bot
 
@@ -69,22 +70,6 @@ find a list of all the bots you created, with their specified key and secret. Yo
 this key and secret for use in your bot, as well as your public Id, shown at the top of this 
 section.
 
-If you downloaded our open source bot, you just need to copy these 3 values over into the bot. 
-Open up your file browser and navigate into the directory created earlier when you cloned down the 
-code. In this directory, you will see a file named `index.js` right click on this file and click on
-`open with`. This will open a popup where you can select what program you want to open the file in.
-If you have a preferred text editor, you can open it in that, if not, just open it with notepad.
-
-You can ignore most of the code in the file, but right at the top (lines 5, 6, and 8 of the code) 
-there are 3 fields where you need to copy over the information from your bot creation. The botKey 
-and botSecret fields are labeled in your browser to copy over, and your public Id is found right 
-under the `Your Bots` section. If the bot is being used in a channel that is not belonging to the 
-account you are logged in as, you will need to attain their public Id.
-
-**IMPORTANT**
-Make sure when you copy the key, secret, and id over into the file, you leave the single quotes 
-around the values, or this will break the code.
-
 ### Authorize a bot
 
 If someone else is running a bot in your channel for you, they will need your publicId toa access 
@@ -94,7 +79,7 @@ https://www.stream.me/api-user/v1/{username}/channel
 ```
 
 The value is labeled by `userPublicId`. You can also create your own bot and the information will 
-display to you in the `Your Bots` section of the page.
+display to you in the `Your Bots` section of the page, as listed above.
 
 Once they have your public Id, you can either search for the name of their bot to authorize it on 
 the developers page, or in your [chat settings](https://www.stream.me/settings/chat#authbots).
@@ -102,8 +87,17 @@ the developers page, or in your [chat settings](https://www.stream.me/settings/c
 ## Running This Bot
 
 This is the easy part. Once you have followed all the steps above, make sure your command prompt 
-is pointed into the directory the bot is in, and run `node index`. This will run your bot, and show
-no output while it's running, unless something errors.
+is pointed into the directory the bot is in, if you're not sure, you can close the command prompt, 
+reopen it, and type in the same `cd desktop/OpenSourceBot-master` command. From there write in the 
+following command (You can paste the values from the website by copying them, then using the 
+SHIFT + INS shortcut).
+
+```
+streammebot -k <bot key> -s <bot secret> -i <your id>
+```
+
+After a second or two you will see a message from the bot reading "Connected and Listening for new 
+messages". This indicates that the bot should be working properly, and is ready for use.
 
 ## Creating Your own Bot
 
@@ -252,8 +246,8 @@ will give you an object, inside of which has another array labeled `.streams` th
 to access the first index of. Finally this will have 2 values that you need, `.active` and 
 `.lastStarted`. `.active` gives you a truthy value assigned to if the channel is actually online,
 allowing you to check that before doing any calculations. The `.lastStarted` value returns the 
-date in the format of milliseconds past 1 January 1970, which can easily be used with the JS 
-`Date` object.
+date in the format of milliseconds past 1 January 1970, which can easily be used with the `moment` 
+package, or the JS `Date` object.
 
 If you feel more comfortable using slugs, you can make the same request with a userSlug:
 
@@ -262,18 +256,24 @@ GET https://www.stream.me/api-channel/v1/channels?usernames=${userSlug}
 ```
 
 
-### Documentation for Other APIs and Objects used
+### Documentation for Packages and Objects Used
 
-[JavaScript Date Object][2]
+[Moment.js][2]
 
-[Pastebin Api][3]
+[Moment Duration Format][9]
+
+[pino][3]
+
+[commander][8]
 
 
 
 [1]: https://discord.gg/YchZTYY
-[2]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
-[3]: https://pastebin.com/api
+[2]: http://momentjs.com/docs/
+[3]: https://www.npmjs.com/package/pino
 [4]: https://www.stream.me
 [5]: https://developers.stream.me/bots
 [6]: https://nodejs.org/
 [7]: https://github.com/BeauRussell/OpenSourceBot.git
+[8]: https://www.npmjs.com/package/commander
+[9]: https://github.com/jsmreese/moment-duration-format
