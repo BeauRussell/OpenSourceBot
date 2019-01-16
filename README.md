@@ -2,8 +2,7 @@
 
 This bot is posted publically as an example command bot to help a user write their own bot for 
 use on the website. In this documentation you will find all the resources you need to create your
-own bot, any other questions that you have may be asked in the [discord][1] or emailed to 
-support@stream.me.
+own bot, any other questions that you have may be emailed to support@stream.me.
 
 **Table of Contents**
 
@@ -267,8 +266,6 @@ GET https://www.stream.me/api-channel/v1/channels?usernames=${userSlug}
 [commander][8]
 
 
-
-[1]: https://discord.gg/YchZTYY
 [2]: http://momentjs.com/docs/
 [3]: https://www.npmjs.com/package/pino
 [4]: https://www.stream.me
